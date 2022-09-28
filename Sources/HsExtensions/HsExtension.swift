@@ -1,8 +1,8 @@
 import Foundation
 
 public struct HsExtension<Base> {
-    let base: Base
-    init(_ base: Base) {
+    public let base: Base
+    public init(_ base: Base) {
         self.base = base
     }
 }
