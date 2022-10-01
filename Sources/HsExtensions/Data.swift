@@ -1,6 +1,6 @@
 import Foundation
 
-extension Data {
+public extension Data {
 
     init<T>(from value: T) {
         self = withUnsafePointer(to: value) { (ptr: UnsafePointer<T>) -> Data in
