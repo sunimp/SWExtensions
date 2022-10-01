@@ -11,4 +11,10 @@ final class DataTests: XCTestCase {
     func testReversedHex() throws {
         XCTAssertEqual(testData.hs.reversedHex, "3c2d1f")
     }
+
+    func testDataFrom() throws {
+        let data = Data(from: Int8(-1))
+        XCTAssertEqual(data.hs.hex, "ff")
+    }
+
 }
