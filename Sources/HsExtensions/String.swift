@@ -14,6 +14,20 @@ public extension HsExtension where Base == String {
         return base
     }
 
+    func addHexPrefix() -> String {
+        let prefix = "0x"
+
+        if base.hasPrefix(prefix) {
+            return base
+        }
+
+        return prefix.appending(base)
+    }
+
+    func removeLeadingZeros() -> String {
+        base == "0" ? base : base.replacingOccurrences(of: "^0+", with: "", options: .regularExpression)
+    }
+
     var hexData: Data? {
         let hex = base.hs.stripHexPrefix()
 
@@ -37,6 +51,10 @@ public extension HsExtension where Base == String {
 
     var reversedHexData: Data? {
         self.hexData.map { Data($0.reversed()) }
+    }
+
+    var data: Data {
+        base.data(using: .utf8) ?? Data()
     }
 
 }

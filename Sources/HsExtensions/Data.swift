@@ -20,8 +20,16 @@ public extension HsExtension where Base == Data {
         }
     }
 
+    var hexString: String {
+        "0x" + hex
+    }
+
     var reversedHex: String {
         Data(base.reversed()).hs.hex
+    }
+
+    var bytes: Array<UInt8> {
+        Array(base)
     }
 
     func to<T>(type: T.Type) -> T {
