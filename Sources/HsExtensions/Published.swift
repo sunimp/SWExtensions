@@ -25,12 +25,14 @@ public class DistinctPublished<Value> where Value: Equatable {
 
     public var wrappedValue: Value {
         didSet {
-            subject.send(wrappedValue)
+            if oldValue != wrappedValue {
+                subject.send(wrappedValue)
+            }
         }
     }
 
     public init(wrappedValue: Value) {
         self.wrappedValue = wrappedValue
-        projectedValue = subject.removeDuplicates().eraseToAnyPublisher()
+        projectedValue = subject.eraseToAnyPublisher()
     }
 }
