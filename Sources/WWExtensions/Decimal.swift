@@ -1,8 +1,8 @@
 import Foundation
 
-extension Decimal: IHsExtension {}
+extension Decimal: IWWExtension {}
 
-public extension HsExtension where Base == Decimal {
+public extension WWExtension where Base == Decimal {
 
     var integerDigitCount: Int {
         var value = abs(base)

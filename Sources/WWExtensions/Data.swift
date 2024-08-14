@@ -10,9 +10,9 @@ public extension Data {
 
 }
 
-extension Data: IHsExtension {}
+extension Data: IWWExtension {}
 
-public extension HsExtension where Base == Data {
+public extension WWExtension where Base == Data {
 
     var hex: String {
         base.reduce("") {
@@ -25,7 +25,7 @@ public extension HsExtension where Base == Data {
     }
 
     var reversedHex: String {
-        Data(base.reversed()).hs.hex
+        Data(base.reversed()).ww.hex
     }
 
     var bytes: Array<UInt8> {
@@ -42,18 +42,18 @@ public extension HsExtension where Base == Data {
 
     func to(type: VarInt.Type) -> VarInt {
         let value: UInt64
-        let length = base[0..<1].hs.to(type: UInt8.self)
+        let length = base[0..<1].ww.to(type: UInt8.self)
         switch length {
         case 0...252:
             value = UInt64(length)
         case 0xfd:
-            value = UInt64(base[1...2].hs.to(type: UInt16.self))
+            value = UInt64(base[1...2].ww.to(type: UInt16.self))
         case 0xfe:
-            value = UInt64(base[1...4].hs.to(type: UInt32.self))
+            value = UInt64(base[1...4].ww.to(type: UInt32.self))
         case 0xff:
             fallthrough
         default:
-            value = base[1...8].hs.to(type: UInt64.self)
+            value = base[1...8].ww.to(type: UInt64.self)
         }
         return VarInt(value)
     }

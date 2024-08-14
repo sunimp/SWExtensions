@@ -1,6 +1,6 @@
-# HsExtensions.Swift
+# WWExtensions.Swift
 
-HsExtensions library include extensions for different classes for easy converting and transform data
+WWExtensions library include extensions for different classes for easy converting and transform data
 
 ## Requirements
 iOS (13.0, *)
@@ -18,18 +18,18 @@ the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/horizontalsystems/HsExtensions.Swift.git", .upToNextMajor(from: "1.0.0")),
+    .package(url: "https://github.com/sunimp/WWExtensions.Swift.git", .upToNextMajor(from: "1.0.0")),
 ]
 ```
 
 for target: []
 ```swift
 dependencies: [
-    .product(name: "HsExtensions", package: "HsExtensions.Swift"),
+    .product(name: "WWExtensions", package: "WWExtensions.Swift"),
 ]
 ```
 
 
 ## License
 
-HsExtensions is available under the MIT license. See the LICENSE file for more info.
+WWExtensions is available under the MIT license. See the LICENSE file for more info.

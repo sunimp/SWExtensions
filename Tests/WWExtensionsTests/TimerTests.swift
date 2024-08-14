@@ -1,5 +1,5 @@
 import XCTest
-@testable import HsExtensions
+@testable import WWExtensions
 
 final class TimerTests: XCTestCase {
 

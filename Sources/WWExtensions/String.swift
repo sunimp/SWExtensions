@@ -1,8 +1,8 @@
 import Foundation
 
-extension String: IHsExtension {}
+extension String: IWWExtension {}
 
-public extension HsExtension where Base == String {
+public extension WWExtension where Base == String {
 
     func stripHexPrefix() -> String {
         let prefix = "0x"
@@ -29,7 +29,7 @@ public extension HsExtension where Base == String {
     }
 
     var hexData: Data? {
-        let hex = base.hs.stripHexPrefix()
+        let hex = base.ww.stripHexPrefix()
 
         let len = hex.count / 2
         var data = Data(capacity: len)

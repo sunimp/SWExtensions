@@ -43,7 +43,7 @@ public struct VarInt : ExpressibleByIntegerLiteral {
     }
 
     static public func deserialize(_ data: Data) -> VarInt {
-        data.hs.to(type: self)
+        data.ww.to(type: self)
     }
 }
 

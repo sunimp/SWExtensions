@@ -1,6 +1,6 @@
 import Foundation
 import XCTest
-@testable import HsExtensions
+@testable import WWExtensions
 
 public func date(string: String) -> Date {
     let formatter = DateFormatter()
@@ -18,22 +18,22 @@ final class DateTests: XCTestCase {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
         let expected = date(string: "2022-09-18 03:00:00.000")
-        XCTAssertEqual(testDate.hs.startOfHour, expected)
+        XCTAssertEqual(testDate.ww.startOfHour, expected)
     }
 
     func testStartDay() throws {
         let expected = date(string: "2022-09-18 00:00:00.000")
-        XCTAssertEqual(testDate.hs.startOfDay, expected)
+        XCTAssertEqual(testDate.ww.startOfDay, expected)
     }
 
     func testStartMonth() throws {
         let expected = date(string: "2022-09-01 00:00:00.000")
-        XCTAssertEqual(testDate.hs.startOfMonth, expected)
+        XCTAssertEqual(testDate.ww.startOfMonth, expected)
     }
 
     func testStartMonthAgo() throws {
         let expected = date(string: "2022-07-01 00:00:00.000")
-        XCTAssertEqual(testDate.hs.startOfMonth(ago: 2), expected)
+        XCTAssertEqual(testDate.ww.startOfMonth(ago: 2), expected)
     }
 
 }

@@ -1,8 +1,8 @@
 import Foundation
 
-extension Date: IHsExtension {}
+extension Date: IWWExtension {}
 
-public extension HsExtension where Base == Date {
+public extension WWExtension where Base == Date {
 
     var startOfHour: Date? {
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour], from: base)
