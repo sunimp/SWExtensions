@@ -12,9 +12,9 @@ public protocol IWWExtension {
     var ww: AnyType { get }
 }
 
-public extension IWWExtension {
+extension IWWExtension {
     /// Gets a namespace holder for WW compatible types.
-    var ww: WWExtension<Self> {
+    public var ww: WWExtension<Self> {
         get { WWExtension(self) }
     }
 }

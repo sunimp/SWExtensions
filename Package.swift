@@ -13,7 +13,6 @@ let package = Package(
             name: "WWExtensions",
             targets: ["WWExtensions"]),
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "WWExtensions",

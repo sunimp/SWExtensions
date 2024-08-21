@@ -2,23 +2,23 @@ import Foundation
 
 extension Date: IWWExtension {}
 
-public extension WWExtension where Base == Date {
+extension WWExtension where Base == Date {
 
-    var startOfHour: Date? {
+    public var startOfHour: Date? {
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour], from: base)
         return Calendar.current.date(from: components)
     }
 
-    var startOfDay: Date {
+    public var startOfDay: Date {
         Calendar.current.startOfDay(for: base)
     }
 
-    var startOfMonth: Date? {
+    public var startOfMonth: Date? {
         let components = Calendar.current.dateComponents([.year, .month], from: startOfDay)
         return Calendar.current.date(from: components)
     }
 
-    func startOfMonth(ago: Int) -> Date? {
+    public func startOfMonth(ago: Int) -> Date? {
         var components = DateComponents()
         components.month = -ago
 

@@ -1,17 +1,18 @@
 import Foundation
 
-public extension Array {
+extension Array {
     
-    struct WWExtensions {
+    public struct WWExtensions {
+        
         let base: [Element]
         
-        func chunked(into size: Int) -> [[Element]] {
+        public func chunked(into size: Int) -> [[Element]] {
             stride(from: 0, to: base.count, by: size).map {
                 Array(base[$0 ..< Swift.min($0 + size, base.count)])
             }
         }
         
-        func at(_ index: Int) -> Element? {
+        public func at(_ index: Int) -> Element? {
             guard base.count > index else {
                 return nil
             }
@@ -20,7 +21,7 @@ public extension Array {
         
     }
     
-    var ww: WWExtensions {
+    public var ww: WWExtensions {
         get { WWExtensions(base: self) }
     }
     
@@ -28,7 +29,7 @@ public extension Array {
 
 extension Array.WWExtensions where Element: Hashable {
     
-    var unique: [Element] {
+    public var unique: [Element] {
         Array(Set(base))
     }
     

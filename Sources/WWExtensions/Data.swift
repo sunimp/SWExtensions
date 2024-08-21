@@ -1,46 +1,45 @@
 import Foundation
 
-public extension Data {
+extension Data {
 
-    init<T>(from value: T) {
+    public init<T>(from value: T) {
         self = withUnsafePointer(to: value) { (ptr: UnsafePointer<T>) -> Data in
             Data(buffer: UnsafeBufferPointer(start: ptr, count: 1))
         }
     }
-
 }
 
 extension Data: IWWExtension {}
 
-public extension WWExtension where Base == Data {
+extension WWExtension where Base == Data {
 
-    var hex: String {
+    public var hex: String {
         base.reduce("") {
             $0 + String(format: "%02x", $1)
         }
     }
 
-    var hexString: String {
+    public var hexString: String {
         "0x" + hex
     }
 
-    var reversedHex: String {
+    public var reversedHex: String {
         Data(base.reversed()).ww.hex
     }
 
-    var bytes: Array<UInt8> {
+    public var bytes: Array<UInt8> {
         Array(base)
     }
 
-    func to<T>(type: T.Type) -> T {
+    public func to<T>(type: T.Type) -> T {
         base.withUnsafeBytes { $0.baseAddress!.assumingMemoryBound(to: T.self).pointee }
     }
 
-    func to(type: String.Type) -> String {
+    public func to(type: String.Type) -> String {
         String(bytes: base, encoding: .ascii)!.replacingOccurrences(of: "\0", with: "")
     }
 
-    func to(type: VarInt.Type) -> VarInt {
+    public func to(type: VarInt.Type) -> VarInt {
         let value: UInt64
         let length = base[0..<1].ww.to(type: UInt8.self)
         switch length {

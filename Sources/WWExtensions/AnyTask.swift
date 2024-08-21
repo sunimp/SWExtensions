@@ -33,7 +33,7 @@ public final class AnyTask {
         )
     }
 
-    init<Success, Failure>(
+    public init<Success, Failure>(
             _ task: Task<Success, Failure>,
             options: Options,
             assertionFailureHandler: @escaping (@autoclosure () -> String, StaticString, UInt) -> Void
@@ -44,8 +44,6 @@ public final class AnyTask {
         hashValueBlock = { task.hashValue }
         self.assertionFailureHandler = assertionFailureHandler
     }
-
-    deinit { if !isCancelled { cancel() } }
 
     /// Cancels the task if it isn't already cancelled.
     /// If `options` is configured with `.assertOnOverCancellation` and `cancel` is called when `isCancelled` is already true,
@@ -59,6 +57,8 @@ public final class AnyTask {
         guard options.contains(.assertOnOverCancellation) else { return }
         assertionFailureHandler("The task was cancelled more than once! You're receiving this assertion because this AnyTask is configured to assert on over cancellation.", #file, #line)
     }
+    
+    deinit { if !isCancelled { cancel() } }
 }
 
 extension AnyTask {

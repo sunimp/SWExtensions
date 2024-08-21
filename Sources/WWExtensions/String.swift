@@ -2,39 +2,15 @@ import Foundation
 
 extension String: IWWExtension {}
 
-public extension WWExtension where Base == String {
+extension WWExtension where Base == String {
 
-    func stripHexPrefix() -> String {
-        let prefix = "0x"
-
-        if base.hasPrefix(prefix) {
-            return String(base.dropFirst(prefix.count))
-        }
-
-        return base
-    }
-
-    func addHexPrefix() -> String {
-        let prefix = "0x"
-
-        if base.hasPrefix(prefix) {
-            return base
-        }
-
-        return prefix.appending(base)
-    }
-
-    func removeLeadingZeros() -> String {
-        base == "0" ? base : base.replacingOccurrences(of: "^0+", with: "", options: .regularExpression)
-    }
-
-    var hexData: Data? {
+    public var hexData: Data? {
         let hex = base.ww.stripHexPrefix()
-
+        
         let len = hex.count / 2
         var data = Data(capacity: len)
         var s = ""
-
+        
         for c in hex {
             s += String(c)
             if s.count == 2 {
@@ -48,13 +24,36 @@ public extension WWExtension where Base == String {
         }
         return data
     }
-
-    var reversedHexData: Data? {
+    
+    public var reversedHexData: Data? {
         self.hexData.map { Data($0.reversed()) }
     }
-
-    var data: Data {
+    
+    public var data: Data {
         base.data(using: .utf8) ?? Data()
     }
+    
+    public func stripHexPrefix() -> String {
+        let prefix = "0x"
 
+        if base.hasPrefix(prefix) {
+            return String(base.dropFirst(prefix.count))
+        }
+
+        return base
+    }
+
+    public func addHexPrefix() -> String {
+        let prefix = "0x"
+
+        if base.hasPrefix(prefix) {
+            return base
+        }
+
+        return prefix.appending(base)
+    }
+
+    public func removeLeadingZeros() -> String {
+        base == "0" ? base : base.replacingOccurrences(of: "^0+", with: "", options: .regularExpression)
+    }
 }

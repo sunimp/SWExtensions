@@ -1,8 +1,9 @@
 import Foundation
 
-public extension Timer {
+extension Timer {
 
-    @discardableResult static func fireAfter(_ interval: TimeInterval, repeats: Bool = false,  runLoopModes: RunLoop.Mode = RunLoop.Mode.common, action: (() -> ())? = nil) -> Timer {
+    @discardableResult 
+    public static func fireAfter(_ interval: TimeInterval, repeats: Bool = false,  runLoopModes: RunLoop.Mode = RunLoop.Mode.common, action: (() -> ())? = nil) -> Timer {
         let actionTimer = ActionTimer()
         actionTimer.action = action
 
@@ -21,9 +22,4 @@ fileprivate class ActionTimer {
     @objc func timerEvent() {
         action?()
     }
-
-//    deinit {
-//        print("deinit \(self)")
-//    }
-
 }

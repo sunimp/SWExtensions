@@ -5,14 +5,15 @@ public protocol BinaryConvertible {
     static func +=(lhs: inout Data, rhs: Self)
 }
 
-public extension BinaryConvertible {
-    static func +(lhs: Data, rhs: Self) -> Data {
+extension BinaryConvertible {
+    
+    public static func +(lhs: Data, rhs: Self) -> Data {
         lhs + withUnsafePointer(to: rhs) { ptr -> Data in
             Data(buffer: UnsafeBufferPointer(start: ptr, count: 1))
         }
     }
 
-    static func +=(lhs: inout Data, rhs: Self) {
+    public static func +=(lhs: inout Data, rhs: Self) {
         lhs = lhs + rhs
     }
 }
