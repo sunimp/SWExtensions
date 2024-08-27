@@ -1,4 +1,13 @@
+//
+//  AnyTask.swift
+//  WWExtensions
+//
+//  Created by Sun on 2024/8/26.
+//
+
 import Foundation
+
+// MARK: - AnyTask
 
 /// A type-erased task that you can use to easily store in a collection of tasks, similar to Combine's `AnyCancellable`.
 ///
@@ -23,20 +32,20 @@ public final class AnyTask {
     ///   - task: The task to erase.
     ///   - options: The options to configure the erased task with,
     public convenience init<Success, Failure>(
-            _ task: Task<Success, Failure>,
-            options: Options = .default
+        _ task: Task<Success, Failure>,
+        options: Options = .default
     ) {
         self.init(
-                task,
-                options: options,
-                assertionFailureHandler: assertionFailure
+            task,
+            options: options,
+            assertionFailureHandler: assertionFailure
         )
     }
 
     public init<Success, Failure>(
-            _ task: Task<Success, Failure>,
-            options: Options,
-            assertionFailureHandler: @escaping (@autoclosure () -> String, StaticString, UInt) -> Void
+        _ task: Task<Success, Failure>,
+        options: Options,
+        assertionFailureHandler: @escaping (@autoclosure () -> String, StaticString, UInt) -> Void
     ) {
         self.options = options
         onCancel = task.cancel
@@ -55,11 +64,17 @@ public final class AnyTask {
 
     private func assertCancellationIfRequired() {
         guard options.contains(.assertOnOverCancellation) else { return }
-        assertionFailureHandler("The task was cancelled more than once! You're receiving this assertion because this AnyTask is configured to assert on over cancellation.", #file, #line)
+        assertionFailureHandler(
+            "The task was cancelled more than once! You're receiving this assertion because this AnyTask is configured to assert on over cancellation.",
+            #file,
+            #line
+        )
     }
     
     deinit { if !isCancelled { cancel() } }
 }
+
+// MARK: AnyTask.Options
 
 extension AnyTask {
 
@@ -76,6 +91,8 @@ extension AnyTask {
         public init(rawValue: Int) { self.rawValue = rawValue }
     }
 }
+
+// MARK: Hashable
 
 extension AnyTask: Hashable {
 

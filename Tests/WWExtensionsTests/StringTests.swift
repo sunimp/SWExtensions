@@ -1,6 +1,8 @@
 import XCTest
 @testable import WWExtensions
 
+// MARK: - StringTests
+
 final class StringTests: XCTestCase {
     private let testData = Data([0x1F, 0x2D, 0x3C])
 
@@ -22,10 +24,10 @@ final class StringTests: XCTestCase {
 }
 
 func byteArrayLittleEndian(int: Int) -> [UInt8] {
-    return [
+    [
         UInt8(int & 0x000000FF),
         UInt8((int & 0x0000FF00) >> 8),
         UInt8((int & 0x00FF0000) >> 16),
-        UInt8((int & 0xFF000000) >> 24)
+        UInt8((int & 0xFF000000) >> 24),
     ]
 }

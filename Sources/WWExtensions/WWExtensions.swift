@@ -1,4 +1,13 @@
+//
+//  WWExtension.swift
+//  WWExtensions
+//
+//  Created by Sun on 2024/8/26.
+//
+
 import Foundation
+
+// MARK: - WWExtension
 
 public struct WWExtension<Base> {
     public let base: Base
@@ -7,6 +16,8 @@ public struct WWExtension<Base> {
     }
 }
 
+// MARK: - IWWExtension
+
 public protocol IWWExtension {
     associatedtype AnyType
     var ww: AnyType { get }
@@ -14,7 +25,5 @@ public protocol IWWExtension {
 
 extension IWWExtension {
     /// Gets a namespace holder for WW compatible types.
-    public var ww: WWExtension<Self> {
-        get { WWExtension(self) }
-    }
+    public var ww: WWExtension<Self> { WWExtension(self) }
 }

@@ -1,3 +1,10 @@
+//
+//  Array.swift
+//  WWExtensions
+//
+//  Created by Sun on 2024/8/26.
+//
+
 import Foundation
 
 extension Array {
@@ -21,9 +28,7 @@ extension Array {
         
     }
     
-    public var ww: WWExtensions {
-        get { WWExtensions(base: self) }
-    }
+    public var ww: WWExtensions { WWExtensions(base: self) }
     
 }
 

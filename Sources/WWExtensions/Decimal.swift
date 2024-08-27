@@ -1,6 +1,15 @@
+//
+//  Decimal.swift
+//  WWExtensions
+//
+//  Created by Sun on 2024/8/26.
+//
+
 import Foundation
 
-extension Decimal: IWWExtension {}
+// MARK: - Decimal + IWWExtension
+
+extension Decimal: IWWExtension { }
 
 extension WWExtension where Base == Decimal {
 
@@ -25,7 +34,14 @@ extension WWExtension where Base == Decimal {
 
     public func rounded(decimal: Int) -> Decimal {
         let poweredDecimal = base * pow(10, decimal)
-        let handler = NSDecimalNumberHandler(roundingMode: .plain, scale: 0, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        let handler = NSDecimalNumberHandler(
+            roundingMode: .plain,
+            scale: 0,
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: false
+        )
         return NSDecimalNumber(decimal: poweredDecimal).rounding(accordingToBehavior: handler).decimalValue
     }
 

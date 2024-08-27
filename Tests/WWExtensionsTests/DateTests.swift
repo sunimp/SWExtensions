@@ -10,6 +10,8 @@ public func date(string: String) -> Date {
     return formatter.date(from: string)!
 }
 
+// MARK: - DateTests
+
 final class DateTests: XCTestCase {
 
     private let testDate = date(string: "2022-09-18 03:17:11.000")

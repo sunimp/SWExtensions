@@ -1,6 +1,15 @@
+//
+//  Date.swift
+//  WWExtensions
+//
+//  Created by Sun on 2024/8/26.
+//
+
 import Foundation
 
-extension Date: IWWExtension {}
+// MARK: - Date + IWWExtension
+
+extension Date: IWWExtension { }
 
 extension WWExtension where Base == Date {
 
@@ -22,7 +31,7 @@ extension WWExtension where Base == Date {
         var components = DateComponents()
         components.month = -ago
 
-        guard let startOfMonth = startOfMonth else {
+        guard let startOfMonth else {
             return nil
         }
         return Calendar.current.date(byAdding: components, to: startOfMonth)

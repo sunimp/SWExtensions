@@ -1,6 +1,15 @@
+//
+//  String.swift
+//  WWExtensions
+//
+//  Created by Sun on 2024/8/26.
+//
+
 import Foundation
 
-extension String: IWWExtension {}
+// MARK: - String + IWWExtension
+
+extension String: IWWExtension { }
 
 extension WWExtension where Base == String {
 
@@ -26,7 +35,7 @@ extension WWExtension where Base == String {
     }
     
     public var reversedHexData: Data? {
-        self.hexData.map { Data($0.reversed()) }
+        hexData.map { Data($0.reversed()) }
     }
     
     public var data: Data {

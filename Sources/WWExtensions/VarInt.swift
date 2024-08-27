@@ -1,9 +1,18 @@
+//
+//  VarInt.swift
+//  WWExtensions
+//
+//  Created by Sun on 2024/8/26.
+//
+
 import Foundation
+
+// MARK: - VarInt
 
 /// Integer can be encoded depending on the represented value to save space.
 /// Variable length integers always precede an array/vector of a type of data that may vary in length.
 /// Longer numbers are encoded in little endian.
-public struct VarInt : ExpressibleByIntegerLiteral {
+public struct VarInt: ExpressibleByIntegerLiteral {
     public typealias IntegerLiteralType = UInt64
     public let underlyingValue: UInt64
     public let length: UInt8
@@ -17,17 +26,21 @@ public struct VarInt : ExpressibleByIntegerLiteral {
         underlyingValue = value
 
         switch value {
-        case 0...252:
+        case 0 ... 252:
             length = 1
             data = Data() + UInt8(value).littleEndian
-        case 253...0xffff:
+
+        case 253 ... 0xffff:
             length = 2
             data = Data() + UInt8(0xfd).littleEndian + UInt16(value).littleEndian
-        case 0x10000...0xffffffff:
+
+        case 0x10000 ... 0xffffffff:
             length = 4
             data = Data() + UInt8(0xfe).littleEndian + UInt32(value).littleEndian
-        case 0x100000000...0xffffffffffffffff:
+
+        case 0x100000000 ... 0xffffffffffffffff:
             fallthrough
+
         default:
             length = 8
             data = Data() + UInt8(0xff).littleEndian + UInt64(value).littleEndian
@@ -42,12 +55,14 @@ public struct VarInt : ExpressibleByIntegerLiteral {
         data
     }
 
-    static public func deserialize(_ data: Data) -> VarInt {
+    public static func deserialize(_ data: Data) -> VarInt {
         data.ww.to(type: self)
     }
 }
 
-extension VarInt : CustomStringConvertible {
+// MARK: CustomStringConvertible
+
+extension VarInt: CustomStringConvertible {
     public var description: String {
         "\(underlyingValue)"
     }

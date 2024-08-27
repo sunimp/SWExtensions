@@ -1,3 +1,10 @@
+//
+//  Task+AnyTask.swift
+//  WWExtensions
+//
+//  Created by Sun on 2024/8/26.
+//
+
 import Foundation
 
 extension Task {
@@ -15,8 +22,8 @@ extension Task {
     ///   - options: The options to configure the task with.
     @discardableResult
     public func store<Collection: RangeReplaceableCollection>(
-            in collection: inout Collection,
-            options: AnyTask.Options = .default
+        in collection: inout Collection,
+        options: AnyTask.Options = .default
     ) -> AnyTask where Collection.Element == AnyTask {
         let task = erased(options: options)
         collection.append(task)
@@ -25,8 +32,8 @@ extension Task {
 
     @discardableResult
     public func store(
-            in set: inout Set<AnyTask>,
-            options: AnyTask.Options = .default
+        in set: inout Set<AnyTask>,
+        options: AnyTask.Options = .default
     ) -> (inserted: Bool, memberAfterInsert: AnyTask) {
         set.insert(erased(options: options))
     }

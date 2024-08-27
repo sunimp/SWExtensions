@@ -1,5 +1,14 @@
+//
+//  Published.swift
+//  WWExtensions
+//
+//  Created by Sun on 2024/8/26.
+//
+
 import Foundation
 import Combine
+
+// MARK: - PostPublished
 
 @propertyWrapper
 public class PostPublished<Value> {
@@ -17,6 +26,8 @@ public class PostPublished<Value> {
         projectedValue = subject.eraseToAnyPublisher()
     }
 }
+
+// MARK: - DistinctPublished
 
 @propertyWrapper
 public class DistinctPublished<Value> where Value: Equatable {

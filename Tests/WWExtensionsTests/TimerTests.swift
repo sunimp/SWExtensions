@@ -4,7 +4,6 @@ import XCTest
 final class TimerTests: XCTestCase {
 
     func testTimer() throws {
-
         let exp = expectation(description: "Timer fired!")
 
         let expectDate = Date(timeIntervalSinceNow: 2)

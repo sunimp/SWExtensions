@@ -13,6 +13,9 @@ let package = Package(
             name: "WWExtensions",
             targets: ["WWExtensions"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/nicklockwood/SwiftFormat.git", from: "0.54.0"),
+    ],
     targets: [
         .target(
             name: "WWExtensions",
