@@ -14,7 +14,7 @@ extension Timer {
         _ interval: TimeInterval,
         repeats: Bool = false,
         runLoopModes: RunLoop.Mode = RunLoop.Mode.common,
-        action: (() -> ())? = nil
+        action: (() -> Void)? = nil
     ) -> Timer {
         let actionTimer = ActionTimer()
         actionTimer.action = action
@@ -38,7 +38,7 @@ extension Timer {
 
 private class ActionTimer {
 
-    var action: (() -> ())? = nil
+    var action: (() -> Void)?
 
     @objc
     func timerEvent() {
