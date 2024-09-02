@@ -3,9 +3,10 @@
 WWExtensions library include extensions for different classes for easy converting and transform data
 
 ## Requirements
-iOS (14.0, *)
-Swift 5.10+
-Xcode 15.4+
+
+* Xcode 15.4+
+* Swift 5.10+
+* iOS 14.0+
 
 ## Installation
 
