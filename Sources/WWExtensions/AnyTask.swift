@@ -1,8 +1,7 @@
 //
 //  AnyTask.swift
-//  WWExtensions
 //
-//  Created by Sun on 2024/8/26.
+//  Created by Sun on 2023/4/11.
 //
 
 import Foundation
@@ -12,13 +11,14 @@ import Foundation
 /// A type-erased task that you can use to easily store in a collection of tasks, similar to Combine's `AnyCancellable`.
 ///
 /// By configuring the task with `automaticallyCancelOnDenit` you will get cancellation of the task for free
-/// when the `AnyTask` is destroyed, however you can choose to opt out of this behaviour if you prefer to control cancellation manually.
+/// when the `AnyTask` is destroyed, however you can choose to opt out of this behaviour if you prefer to control
+/// cancellation manually.
 ///
-/// Since the task is type-erased, there is no API to retrieve the result of the task, but you can check if it is cancelled.
+/// Since the task is type-erased, there is no API to retrieve the result of the task, but you can check if it is
+/// cancelled.
 public final class AnyTask {
+    // MARK: Properties
 
-    /// Whether the task is cancelled.
-    public var isCancelled: Bool { isCancelledBlock() }
     /// The `Options` the task is configured with.
     public let options: Options
 
@@ -26,6 +26,13 @@ public final class AnyTask {
     private let isCancelledBlock: () -> Bool
     private let hashValueBlock: () -> Int
     private let assertionFailureHandler: (@autoclosure () -> String, StaticString, UInt) -> Void
+
+    // MARK: Computed Properties
+
+    /// Whether the task is cancelled.
+    public var isCancelled: Bool { isCancelledBlock() }
+
+    // MARK: Lifecycle
 
     /// Creates a new `AnyTask` by erasing the `Task` passed as the `task` parameter.
     /// - Parameters:
@@ -54,32 +61,42 @@ public final class AnyTask {
         self.assertionFailureHandler = assertionFailureHandler
     }
 
+    deinit { if !isCancelled {
+        cancel()
+    } }
+
+    // MARK: Functions
+
     /// Cancels the task if it isn't already cancelled.
-    /// If `options` is configured with `.assertOnOverCancellation` and `cancel` is called when `isCancelled` is already true,
+    /// If `options` is configured with `.assertOnOverCancellation` and `cancel` is called when `isCancelled` is already
+    /// true,
     /// then an assertion failure will be made, crashing the application in debug mode.
     public func cancel() {
-        guard !isCancelled else { return assertCancellationIfRequired() }
+        guard !isCancelled else {
+            return assertCancellationIfRequired()
+        }
         onCancel()
     }
 
     private func assertCancellationIfRequired() {
-        guard options.contains(.assertOnOverCancellation) else { return }
+        guard options.contains(.assertOnOverCancellation) else {
+            return
+        }
         assertionFailureHandler(
             "The task was cancelled more than once! You're receiving this assertion because this AnyTask is configured to assert on over cancellation.",
             #file,
             #line
         )
     }
-    
-    deinit { if !isCancelled { cancel() } }
 }
 
 // MARK: AnyTask.Options
 
 extension AnyTask {
-
     /// Represents a set of options available to configure an `AnyTask` with.
     public struct Options: OptionSet {
+        // MARK: Static Properties
+
         /// Configures the task to automatically cancel itself when it is destroyed.
         public static let automaticallyCancelOnDenit: Self = .init(rawValue: 1 << 0)
         /// Configures the task to assert when a call to cancel it occurs when it is already cancelled.
@@ -87,7 +104,12 @@ extension AnyTask {
         /// The default set of options, comprising of `.automaticallyCancelOnDenit`
         public static let `default`: Self = [.automaticallyCancelOnDenit]
 
+        // MARK: Properties
+
         public let rawValue: Int
+
+        // MARK: Lifecycle
+
         public init(rawValue: Int) { self.rawValue = rawValue }
     }
 }
@@ -95,7 +117,6 @@ extension AnyTask {
 // MARK: Hashable
 
 extension AnyTask: Hashable {
-
     public func hash(into hasher: inout Hasher) { hasher.combine(hashValueBlock()) }
     public static func == (lhs: AnyTask, rhs: AnyTask) -> Bool { lhs.hashValue == rhs.hashValue }
 }

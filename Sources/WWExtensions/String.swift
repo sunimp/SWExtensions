@@ -1,8 +1,7 @@
 //
 //  String.swift
-//  WWExtensions
 //
-//  Created by Sun on 2024/8/26.
+//  Created by Sun on 2022/9/20.
 //
 
 import Foundation
@@ -12,7 +11,6 @@ import Foundation
 extension String: IWWExtension { }
 
 extension WWExtension where Base == String {
-
     public var hexData: Data? {
         let hex = base.ww.stripHexPrefix()
         

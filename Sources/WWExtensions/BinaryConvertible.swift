@@ -1,8 +1,7 @@
 //
 //  BinaryConvertible.swift
-//  WWExtensions
 //
-//  Created by Sun on 2024/8/26.
+//  Created by Sun on 2022/9/20.
 //
 
 import Foundation
@@ -15,7 +14,6 @@ public protocol BinaryConvertible {
 }
 
 extension BinaryConvertible {
-    
     public static func + (lhs: Data, rhs: Self) -> Data {
         lhs + withUnsafePointer(to: rhs) { ptr -> Data in
             Data(buffer: UnsafeBufferPointer(start: ptr, count: 1))
@@ -75,7 +73,9 @@ extension Bool: BinaryConvertible {
 
 extension String: BinaryConvertible {
     public static func + (lhs: Data, rhs: String) -> Data {
-        guard let data = rhs.data(using: .ascii) else { return lhs }
+        guard let data = rhs.data(using: .ascii) else {
+            return lhs
+        }
         return lhs + data
     }
 }

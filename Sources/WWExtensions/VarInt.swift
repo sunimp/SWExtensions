@@ -1,8 +1,7 @@
 //
 //  VarInt.swift
-//  WWExtensions
 //
-//  Created by Sun on 2024/8/26.
+//  Created by Sun on 2022/10/1.
 //
 
 import Foundation
@@ -13,10 +12,17 @@ import Foundation
 /// Variable length integers always precede an array/vector of a type of data that may vary in length.
 /// Longer numbers are encoded in little endian.
 public struct VarInt: ExpressibleByIntegerLiteral {
+    // MARK: Nested Types
+
     public typealias IntegerLiteralType = UInt64
+
+    // MARK: Properties
+
     public let underlyingValue: UInt64
     public let length: UInt8
     public let data: Data
+
+    // MARK: Lifecycle
 
     public init(integerLiteral value: UInt64) {
         self.init(value)
@@ -30,20 +36,20 @@ public struct VarInt: ExpressibleByIntegerLiteral {
             length = 1
             data = Data() + UInt8(value).littleEndian
 
-        case 253 ... 0xffff:
+        case 253 ... 0xFFFF:
             length = 2
-            data = Data() + UInt8(0xfd).littleEndian + UInt16(value).littleEndian
+            data = Data() + UInt8(0xFD).littleEndian + UInt16(value).littleEndian
 
-        case 0x10000 ... 0xffffffff:
+        case 0x10000 ... 0xFFFF_FFFF:
             length = 4
-            data = Data() + UInt8(0xfe).littleEndian + UInt32(value).littleEndian
+            data = Data() + UInt8(0xFE).littleEndian + UInt32(value).littleEndian
 
-        case 0x100000000 ... 0xffffffffffffffff:
+        case 0x1_0000_0000 ... 0xFFFF_FFFF_FFFF_FFFF:
             fallthrough
 
         default:
             length = 8
-            data = Data() + UInt8(0xff).littleEndian + UInt64(value).littleEndian
+            data = Data() + UInt8(0xFF).littleEndian + UInt64(value).littleEndian
         }
     }
 
@@ -51,12 +57,16 @@ public struct VarInt: ExpressibleByIntegerLiteral {
         self.init(UInt64(value))
     }
 
-    public func serialized() -> Data {
-        data
-    }
+    // MARK: Static Functions
 
     public static func deserialize(_ data: Data) -> VarInt {
         data.ww.to(type: self)
+    }
+
+    // MARK: Functions
+
+    public func serialized() -> Data {
+        data
     }
 }
 

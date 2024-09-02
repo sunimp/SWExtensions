@@ -1,8 +1,7 @@
 //
 //  Published.swift
-//  WWExtensions
 //
-//  Created by Sun on 2024/8/26.
+//  Created by Sun on 2023/4/11.
 //
 
 import Combine
@@ -12,14 +11,21 @@ import Foundation
 
 @propertyWrapper
 public class PostPublished<Value> {
-    private let subject = PassthroughSubject<Value, Never>()
+    // MARK: Properties
+
     public let projectedValue: AnyPublisher<Value, Never>
+
+    private let subject = PassthroughSubject<Value, Never>()
+
+    // MARK: Computed Properties
 
     public var wrappedValue: Value {
         didSet {
             subject.send(wrappedValue)
         }
     }
+
+    // MARK: Lifecycle
 
     public init(wrappedValue: Value) {
         self.wrappedValue = wrappedValue
@@ -31,8 +37,13 @@ public class PostPublished<Value> {
 
 @propertyWrapper
 public class DistinctPublished<Value> where Value: Equatable {
-    private let subject = PassthroughSubject<Value, Never>()
+    // MARK: Properties
+
     public let projectedValue: AnyPublisher<Value, Never>
+
+    private let subject = PassthroughSubject<Value, Never>()
+
+    // MARK: Computed Properties
 
     public var wrappedValue: Value {
         didSet {
@@ -41,6 +52,8 @@ public class DistinctPublished<Value> where Value: Equatable {
             }
         }
     }
+
+    // MARK: Lifecycle
 
     public init(wrappedValue: Value) {
         self.wrappedValue = wrappedValue

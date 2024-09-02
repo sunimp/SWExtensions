@@ -1,21 +1,20 @@
 //
 //  Timer.swift
-//  WWExtensions
 //
-//  Created by Sun on 2024/8/26.
+//  Created by Sun on 2022/9/20.
 //
 
 import Foundation
 
 extension Timer {
-
     @discardableResult
     public static func fireAfter(
         _ interval: TimeInterval,
         repeats: Bool = false,
         runLoopModes: RunLoop.Mode = RunLoop.Mode.common,
         action: (() -> Void)? = nil
-    ) -> Timer {
+    )
+        -> Timer {
         let actionTimer = ActionTimer()
         actionTimer.action = action
 
@@ -31,14 +30,16 @@ extension Timer {
 
         return timer
     }
-
 }
 
 // MARK: - ActionTimer
 
 private class ActionTimer {
+    // MARK: Properties
 
     var action: (() -> Void)?
+
+    // MARK: Functions
 
     @objc
     func timerEvent() {

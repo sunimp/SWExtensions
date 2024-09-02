@@ -1,14 +1,12 @@
 //
 //  Directory.swift
-//  WWExtensions
 //
-//  Created by Sun on 2024/8/26.
+//  Created by Sun on 2022/9/20.
 //
 
 import Foundation
 
 public enum DirectoryHelper {
-
     public static func directoryURL(for directoryName: String) throws -> URL {
         let fileManager = FileManager.default
 
@@ -27,7 +25,10 @@ public enum DirectoryHelper {
 
     public static func removeAll(inDirectory directoryName: String, except excludedFiles: [String]) throws {
         let fileManager = FileManager.default
-        let fileURLs = try fileManager.contentsOfDirectory(at: directoryURL(for: directoryName), includingPropertiesForKeys: nil)
+        let fileURLs = try fileManager.contentsOfDirectory(
+            at: directoryURL(for: directoryName),
+            includingPropertiesForKeys: nil
+        )
 
         for filename in fileURLs {
             if !excludedFiles.contains(where: { filename.lastPathComponent.contains($0) }) {
@@ -35,5 +36,4 @@ public enum DirectoryHelper {
             }
         }
     }
-
 }

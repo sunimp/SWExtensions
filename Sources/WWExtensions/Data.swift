@@ -1,14 +1,12 @@
 //
 //  Data.swift
-//  WWExtensions
 //
-//  Created by Sun on 2024/8/26.
+//  Created by Sun on 2022/9/20.
 //
 
 import Foundation
 
 extension Data {
-
     public init<T>(from value: T) {
         self = withUnsafePointer(to: value) { (ptr: UnsafePointer<T>) -> Data in
             Data(buffer: UnsafeBufferPointer(start: ptr, count: 1))
@@ -21,7 +19,6 @@ extension Data {
 extension Data: IWWExtension { }
 
 extension WWExtension where Base == Data {
-
     public var hex: String {
         base.reduce("") {
             $0 + String(format: "%02x", $1)
@@ -54,16 +51,15 @@ extension WWExtension where Base == Data {
         switch length {
         case 0 ... 252:
             value = UInt64(length)
-        case 0xfd:
+        case 0xFD:
             value = UInt64(base[1 ... 2].ww.to(type: UInt16.self))
-        case 0xfe:
+        case 0xFE:
             value = UInt64(base[1 ... 4].ww.to(type: UInt32.self))
-        case 0xff:
+        case 0xFF:
             fallthrough
         default:
             value = base[1 ... 8].ww.to(type: UInt64.self)
         }
         return VarInt(value)
     }
-
 }

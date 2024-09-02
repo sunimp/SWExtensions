@@ -1,8 +1,13 @@
-import XCTest
+//
+//  TimerTests.swift
+//
+//  Created by Sun on 2022/9/20.
+//
+
 @testable import WWExtensions
+import XCTest
 
 final class TimerTests: XCTestCase {
-
     func testTimer() throws {
         let exp = expectation(description: "Timer fired!")
 
@@ -16,5 +21,4 @@ final class TimerTests: XCTestCase {
         waitForExpectations(timeout: 5)
         XCTAssertEqual(round(expectDate.timeIntervalSince1970), round(result.timeIntervalSince1970))
     }
-
 }

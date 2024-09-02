@@ -1,6 +1,12 @@
+//
+//  DateTests.swift
+//
+//  Created by Sun on 2022/9/20.
+//
+
 import Foundation
-import XCTest
 @testable import WWExtensions
+import XCTest
 
 public func date(string: String) -> Date {
     let formatter = DateFormatter()
@@ -13,8 +19,11 @@ public func date(string: String) -> Date {
 // MARK: - DateTests
 
 final class DateTests: XCTestCase {
+    // MARK: Properties
 
     private let testDate = date(string: "2022-09-18 03:17:11.000")
+
+    // MARK: Functions
 
     func testStartHour() throws {
         let formatter = DateFormatter()
@@ -37,5 +46,4 @@ final class DateTests: XCTestCase {
         let expected = date(string: "2022-07-01 00:00:00.000")
         XCTAssertEqual(testDate.ww.startOfMonth(ago: 2), expected)
     }
-
 }

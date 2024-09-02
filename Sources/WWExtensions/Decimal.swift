@@ -1,8 +1,7 @@
 //
 //  Decimal.swift
-//  WWExtensions
 //
-//  Created by Sun on 2024/8/26.
+//  Created by Sun on 2022/9/20.
 //
 
 import Foundation
@@ -12,7 +11,6 @@ import Foundation
 extension Decimal: IWWExtension { }
 
 extension WWExtension where Base == Decimal {
-
     public var integerDigitCount: Int {
         var value = abs(base)
         var count = 1
@@ -48,5 +46,4 @@ extension WWExtension where Base == Decimal {
     public func roundedString(decimal: Int) -> String {
         String(describing: rounded(decimal: decimal))
     }
-
 }

@@ -1,8 +1,7 @@
 //
 //  Date.swift
-//  WWExtensions
 //
-//  Created by Sun on 2024/8/26.
+//  Created by Sun on 2022/9/20.
 //
 
 import Foundation
@@ -12,7 +11,6 @@ import Foundation
 extension Date: IWWExtension { }
 
 extension WWExtension where Base == Date {
-
     public var startOfHour: Date? {
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour], from: base)
         return Calendar.current.date(from: components)
@@ -36,5 +34,4 @@ extension WWExtension where Base == Date {
         }
         return Calendar.current.date(byAdding: components, to: startOfMonth)
     }
-
 }

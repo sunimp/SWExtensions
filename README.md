@@ -3,7 +3,9 @@
 WWExtensions library include extensions for different classes for easy converting and transform data
 
 ## Requirements
-iOS (13.0, *)
+iOS (14.0, *)
+Swift 5.10+
+Xcode 15.4+
 
 ## Installation
 
@@ -18,7 +20,7 @@ the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/sunimp/WWExtensions.Swift.git", .upToNextMajor(from: "1.1.1")),
+    .package(url: "https://github.com/sunimp/WWExtensions.Swift.git", .upToNextMajor(from: "1.2.0")),
 ]
 ```
 
