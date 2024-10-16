@@ -4,7 +4,7 @@
 //  Created by Sun on 2022/9/20.
 //
 
-@testable import WWExtensions
+@testable import SWExtensions
 import XCTest
 
 // MARK: - StringTests
@@ -17,18 +17,18 @@ final class StringTests: XCTestCase {
     // MARK: Functions
 
     func testInitData() throws {
-        XCTAssertEqual("0x1f2d3c".ww.hexData, testData)
-        XCTAssertEqual("0x1F2d3C".ww.hexData, testData)
-        XCTAssertEqual("1F2d3C".ww.hexData, testData)
+        XCTAssertEqual("0x1f2d3c".sw.hexData, testData)
+        XCTAssertEqual("0x1F2d3C".sw.hexData, testData)
+        XCTAssertEqual("1F2d3C".sw.hexData, testData)
     }
 
     func testStripPrefix() throws {
-        XCTAssertEqual("0x1f2d3c".ww.stripHexPrefix(), "1f2d3c")
-        XCTAssertEqual("1f2d3c".ww.stripHexPrefix(), "1f2d3c")
+        XCTAssertEqual("0x1f2d3c".sw.stripHexPrefix(), "1f2d3c")
+        XCTAssertEqual("1f2d3c".sw.stripHexPrefix(), "1f2d3c")
     }
 
     func testReversedHexData() throws {
-        XCTAssertEqual("0x1f2d3c".ww.reversedHexData, Data([0x3C, 0x2D, 0x1F]))
+        XCTAssertEqual("0x1f2d3c".sw.reversedHexData, Data([0x3C, 0x2D, 0x1F]))
     }
 }
 

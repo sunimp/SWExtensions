@@ -4,7 +4,7 @@
 //  Created by Sun on 2022/9/20.
 //
 
-@testable import WWExtensions
+@testable import SWExtensions
 import XCTest
 
 final class TimerTests: XCTestCase {

@@ -14,11 +14,11 @@ extension Data {
     }
 }
 
-// MARK: - Data + IWWExtension
+// MARK: - Data + ISWExtension
 
-extension Data: IWWExtension { }
+extension Data: ISWExtension { }
 
-extension WWExtension where Base == Data {
+extension SWExtension where Base == Data {
     public var hex: String {
         base.reduce("") {
             $0 + String(format: "%02x", $1)
@@ -30,7 +30,7 @@ extension WWExtension where Base == Data {
     }
 
     public var reversedHex: String {
-        Data(base.reversed()).ww.hex
+        Data(base.reversed()).sw.hex
     }
 
     public var bytes: [UInt8] {
@@ -47,18 +47,18 @@ extension WWExtension where Base == Data {
 
     public func to(type: VarInt.Type) -> VarInt {
         let value: UInt64
-        let length = base[0 ..< 1].ww.to(type: UInt8.self)
+        let length = base[0 ..< 1].sw.to(type: UInt8.self)
         switch length {
         case 0 ... 252:
             value = UInt64(length)
         case 0xFD:
-            value = UInt64(base[1 ... 2].ww.to(type: UInt16.self))
+            value = UInt64(base[1 ... 2].sw.to(type: UInt16.self))
         case 0xFE:
-            value = UInt64(base[1 ... 4].ww.to(type: UInt32.self))
+            value = UInt64(base[1 ... 4].sw.to(type: UInt32.self))
         case 0xFF:
             fallthrough
         default:
-            value = base[1 ... 8].ww.to(type: UInt64.self)
+            value = base[1 ... 8].sw.to(type: UInt64.self)
         }
         return VarInt(value)
     }

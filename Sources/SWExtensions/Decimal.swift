@@ -6,11 +6,11 @@
 
 import Foundation
 
-// MARK: - Decimal + IWWExtension
+// MARK: - Decimal + ISWExtension
 
-extension Decimal: IWWExtension { }
+extension Decimal: ISWExtension { }
 
-extension WWExtension where Base == Decimal {
+extension SWExtension where Base == Decimal {
     public var integerDigitCount: Int {
         var value = abs(base)
         var count = 1

@@ -60,7 +60,7 @@ public struct VarInt: ExpressibleByIntegerLiteral {
     // MARK: Static Functions
 
     public static func deserialize(_ data: Data) -> VarInt {
-        data.ww.to(type: self)
+        data.sw.to(type: self)
     }
 
     // MARK: Functions

@@ -4,7 +4,7 @@
 //  Created by Sun on 2022/9/20.
 //
 
-@testable import WWExtensions
+@testable import SWExtensions
 import XCTest
 
 final class DataTests: XCTestCase {
@@ -15,15 +15,15 @@ final class DataTests: XCTestCase {
     // MARK: Functions
 
     func testHex() throws {
-        XCTAssertEqual(testData.ww.hex, "1f2d3c")
+        XCTAssertEqual(testData.sw.hex, "1f2d3c")
     }
 
     func testReversedHex() throws {
-        XCTAssertEqual(testData.ww.reversedHex, "3c2d1f")
+        XCTAssertEqual(testData.sw.reversedHex, "3c2d1f")
     }
 
     func testDataFrom() throws {
         let data = Data(from: Int8(-1))
-        XCTAssertEqual(data.ww.hex, "ff")
+        XCTAssertEqual(data.sw.hex, "ff")
     }
 }

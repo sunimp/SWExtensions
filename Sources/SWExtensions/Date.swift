@@ -6,11 +6,11 @@
 
 import Foundation
 
-// MARK: - Date + IWWExtension
+// MARK: - Date + ISWExtension
 
-extension Date: IWWExtension { }
+extension Date: ISWExtension { }
 
-extension WWExtension where Base == Date {
+extension SWExtension where Base == Date {
     public var startOfHour: Date? {
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour], from: base)
         return Calendar.current.date(from: components)

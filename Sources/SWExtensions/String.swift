@@ -6,13 +6,13 @@
 
 import Foundation
 
-// MARK: - String + IWWExtension
+// MARK: - String + ISWExtension
 
-extension String: IWWExtension { }
+extension String: ISWExtension { }
 
-extension WWExtension where Base == String {
+extension SWExtension where Base == String {
     public var hexData: Data? {
-        let hex = base.ww.stripHexPrefix()
+        let hex = base.sw.stripHexPrefix()
         
         let len = hex.count / 2
         var data = Data(capacity: len)

@@ -4,7 +4,7 @@
 //  Created by Sun on 2022/9/20.
 //
 
-@testable import WWExtensions
+@testable import SWExtensions
 import XCTest
 
 final class ArrayTests: XCTestCase {
@@ -16,15 +16,15 @@ final class ArrayTests: XCTestCase {
 
     func testUnique() throws {
         let doubleArray = testArray + testArray
-        XCTAssertEqual(testArray, doubleArray.ww.unique.sorted(by: <))
+        XCTAssertEqual(testArray, doubleArray.sw.unique.sorted(by: <))
     }
 
     func testChunks() throws {
-        XCTAssertEqual(testArray.ww.chunked(into: 2), [["a", "b"], ["c", "d"], ["e"]])
+        XCTAssertEqual(testArray.sw.chunked(into: 2), [["a", "b"], ["c", "d"], ["e"]])
     }
 
     func testAtIndex() throws {
-        XCTAssertEqual(testArray.ww.at(2), "c")
-        XCTAssertEqual(testArray.ww.at(5), nil)
+        XCTAssertEqual(testArray.sw.at(2), "c")
+        XCTAssertEqual(testArray.sw.at(5), nil)
     }
 }

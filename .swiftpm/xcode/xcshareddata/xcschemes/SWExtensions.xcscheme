@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1540"
+   LastUpgradeVersion = "1600"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "WWExtensions"
-               BuildableName = "WWExtensions"
-               BlueprintName = "WWExtensions"
+               BlueprintIdentifier = "SWExtensions"
+               BuildableName = "SWExtensions"
+               BlueprintName = "SWExtensions"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,9 +34,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "WWExtensionsTests"
-               BuildableName = "WWExtensionsTests"
-               BlueprintName = "WWExtensionsTests"
+               BlueprintIdentifier = "SWExtensionsTests"
+               BuildableName = "SWExtensionsTests"
+               BlueprintName = "SWExtensionsTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -52,13 +52,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "TZ"
-            value = "GMT"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -69,9 +62,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "WWExtensions"
-            BuildableName = "WWExtensions"
-            BlueprintName = "WWExtensions"
+            BlueprintIdentifier = "SWExtensions"
+            BuildableName = "SWExtensions"
+            BlueprintName = "SWExtensions"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>

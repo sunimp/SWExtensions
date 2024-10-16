@@ -95,6 +95,7 @@
 --rules wrapSingleLineComments
 --rules wrapSwitchCases
 --rules yodaConditions
+--rules fileHeader
 
 # options
 --allman false
@@ -152,3 +153,5 @@
 --selfrequired # redundantSelf
 --stripunusedargs always # unusedArguments
 --yodaswap always # yodaConditions
+--header \n {file}\n SDExtensions\n\n Created by Sun on {created}.\n
+--dateformat system

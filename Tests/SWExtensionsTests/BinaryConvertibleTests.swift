@@ -4,7 +4,7 @@
 //  Created by Sun on 2022/9/20.
 //
 
-@testable import WWExtensions
+@testable import SWExtensions
 import XCTest
 
 final class BInaryConvertibleTests: XCTestCase {
@@ -16,13 +16,13 @@ final class BInaryConvertibleTests: XCTestCase {
 
     func testSumUint16() throws {
         var result = Data()
-        result = "1f2d".ww.hexData! + UInt16(0x3C4B).bigEndian
+        result = "1f2d".sw.hexData! + UInt16(0x3C4B).bigEndian
         XCTAssertEqual(testData, result)
     }
 
     func testSumHex() throws {
         var result = Data()
-        result = "1f2d".ww.hexData! + String(data: Data([0x3C, 0x4B]), encoding: .utf8)!
+        result = "1f2d".sw.hexData! + String(data: Data([0x3C, 0x4B]), encoding: .utf8)!
         XCTAssertEqual(testData, result)
     }
 }

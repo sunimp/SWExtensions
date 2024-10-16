@@ -1,27 +1,28 @@
 // swift-tools-version: 5.10
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "WWExtensions.Swift",
+    name: "SWExtensions",
     platforms: [
         .iOS(.v14),
     ],
     products: [
         .library(
-            name: "WWExtensions",
-            targets: ["WWExtensions"]),
+            name: "SWExtensions",
+            targets: ["SWExtensions"]
+        ),
     ],
     dependencies: [
-        .package(url: "https://github.com/nicklockwood/SwiftFormat.git", from: "0.54.3"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat.git", from: "0.54.6"),
     ],
     targets: [
         .target(
-            name: "WWExtensions",
+            name: "SWExtensions",
             dependencies: []),
         .testTarget(
-            name: "WWExtensionsTests",
-            dependencies: ["WWExtensions"]),
+            name: "SWExtensionsTests",
+            dependencies: ["SWExtensions"]
+        ),
     ]
 )

@@ -5,12 +5,12 @@
 //
 
 import Foundation
-@testable import WWExtensions
+@testable import SWExtensions
 import XCTest
 
 public func date(string: String) -> Date {
     let formatter = DateFormatter()
-    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    formatter.timeZone = TimeZone.current
     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
 
     return formatter.date(from: string)!
@@ -29,21 +29,21 @@ final class DateTests: XCTestCase {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
         let expected = date(string: "2022-09-18 03:00:00.000")
-        XCTAssertEqual(testDate.ww.startOfHour, expected)
+        XCTAssertEqual(testDate.sw.startOfHour, expected)
     }
 
     func testStartDay() throws {
         let expected = date(string: "2022-09-18 00:00:00.000")
-        XCTAssertEqual(testDate.ww.startOfDay, expected)
+        XCTAssertEqual(testDate.sw.startOfDay, expected)
     }
 
     func testStartMonth() throws {
         let expected = date(string: "2022-09-01 00:00:00.000")
-        XCTAssertEqual(testDate.ww.startOfMonth, expected)
+        XCTAssertEqual(testDate.sw.startOfMonth, expected)
     }
 
     func testStartMonthAgo() throws {
         let expected = date(string: "2022-07-01 00:00:00.000")
-        XCTAssertEqual(testDate.ww.startOfMonth(ago: 2), expected)
+        XCTAssertEqual(testDate.sw.startOfMonth(ago: 2), expected)
     }
 }

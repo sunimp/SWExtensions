@@ -7,7 +7,7 @@
 import Foundation
 
 extension Array {
-    public struct WWExtensions {
+    public struct SWExtensions {
         // MARK: Properties
 
         let base: [Element]
@@ -28,10 +28,10 @@ extension Array {
         }
     }
     
-    public var ww: WWExtensions { WWExtensions(base: self) }
+    public var sw: SWExtensions { SWExtensions(base: self) }
 }
 
-extension Array.WWExtensions where Element: Hashable {
+extension Array.SWExtensions where Element: Hashable {
     public var unique: [Element] {
         Array(Set(base))
     }
